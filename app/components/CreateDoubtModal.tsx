@@ -32,7 +32,7 @@ export default function CreateDoubtModal({ onClose, onSubmit }: CreateDoubtModal
     setTags(tags.filter(tag => tag !== tagToRemove));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!title.trim() || !body.trim()) {
@@ -54,18 +54,18 @@ export default function CreateDoubtModal({ onClose, onSubmit }: CreateDoubtModal
       setBody("");
       setTags([]);
       setNewTag("");
-    } catch (error: unknown) {
+    } catch (error) {
       if (error instanceof Error) {
         console.error('Error creating doubt:', error.message);
       } else {
-        console.error('Error creating doubt:', error);
+        console.error('Error creating doubt:', String(error));
       }
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleAddTag();

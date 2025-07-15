@@ -111,7 +111,6 @@ function ProfileContent() {
       }
       setLoading(false);
     });
-
     return () => unsubscribe();
   }, [fetchUserData]);
 

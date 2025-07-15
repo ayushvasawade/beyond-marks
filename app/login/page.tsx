@@ -29,7 +29,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, form.email, form.password);
       router.push("/dashboard");
-    } catch (err: unknown) {
+    } catch (err) {
       if (err instanceof Error) {
         setError(err.message || "Invalid credentials. Please try again.");
       } else {

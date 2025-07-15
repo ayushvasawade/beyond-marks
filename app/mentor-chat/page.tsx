@@ -69,7 +69,7 @@ function MentorChatContent() {
         // Ensure timestamps are properly converted to Date objects
         const processedMessages = (data.messages || []).map((msg: Message) => ({
           ...msg,
-          timestamp: msg.timestamp ? new Date(msg.timestamp) : new Date()
+          timestamp: msg.timestamp ? new Date(msg.timestamp as string) : new Date()
         }));
         setMessages(processedMessages);
       }

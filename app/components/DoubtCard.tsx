@@ -51,7 +51,7 @@ interface DoubtCardProps {
 
 export default function DoubtCard({ doubt, currentUser, onConnect, onReply, onResolve }: DoubtCardProps) {
   const [showReplies, setShowReplies] = useState(false);
-  const [newReply, setNewReply] = useState("");
+  const [newReply, setNewReply] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleReply = async () => {

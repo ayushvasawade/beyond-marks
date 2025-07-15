@@ -52,7 +52,7 @@ export default function SignUp() {
       });
       setMessage("Account created! Redirecting to login...");
       setTimeout(() => router.push("/login"), 1500);
-    } catch (err: unknown) {
+    } catch (err) {
       if (err instanceof Error) {
         setError(err.message || "Failed to create account. Try again.");
       } else {
