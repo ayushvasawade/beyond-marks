@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     body = (await req.json()) as GeminiTaskRequestBody;
     console.log("Request body:", body);
     
-    const { code, xp, goal, errors, hint, explain } = body;
+    const { hint, explain } = body;
     
     // Simple rate limiting
     const clientId = req.headers.get('x-forwarded-for') || 'unknown';

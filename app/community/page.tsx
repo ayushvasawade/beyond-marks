@@ -14,10 +14,6 @@ interface Connection {
   name: string;
   total_replies_helped: number;
 }
-interface DoubtItem {
-  id: string;
-  // Add other properties as needed
-}
 
 function CommunityHubContent() {
   const [user, setUser] = useState<User | null>(null);

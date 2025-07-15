@@ -7,7 +7,7 @@ interface ValidationResult {
   score: number; // 0-100
 }
 
-function validateHTMLStructure(code: string, _task: string): ValidationResult {
+function validateHTMLStructure(code: string): ValidationResult {
   const hasHtml = code.includes('<html') || code.includes('<!DOCTYPE');
   const hasHead = code.includes('<head');
   const hasBody = code.includes('<body');
@@ -35,7 +35,7 @@ function validateHTMLStructure(code: string, _task: string): ValidationResult {
   };
 }
 
-function validateCSSStructure(code: string, _task: string): ValidationResult {
+function validateCSSStructure(code: string): ValidationResult {
   const hasCss = code.includes('{') && code.includes('}');
   const hasSelectors = code.includes('h1') || code.includes('h2') || code.includes('p') || code.includes('div') || code.includes('.') || code.includes('#');
   const hasProperties = code.includes('color') || code.includes('background') || code.includes('font') || code.includes('margin') || code.includes('padding');
@@ -162,8 +162,8 @@ export async function POST(req: NextRequest) {
     const hasCSS = cssMatch.length > 0;
     
     // Perform validations
-    const htmlValidation = hasHTML ? validateHTMLStructure(code, "") : { isValid: false, message: "No HTML found", suggestions: ["Add HTML structure"], score: 0 };
-    const cssValidation = hasCSS ? validateCSSStructure(code, "") : { isValid: false, message: "No CSS found", suggestions: ["Add CSS styling"], score: 0 };
+    const htmlValidation = hasHTML ? validateHTMLStructure(code) : { isValid: false, message: "No HTML found", suggestions: ["Add HTML structure"], score: 0 };
+    const cssValidation = hasCSS ? validateCSSStructure(code) : { isValid: false, message: "No CSS found", suggestions: ["Add CSS styling"], score: 0 };
     const taskValidation = validateTaskSpecific(code, "");
     const bestPractices = validateBestPractices(code);
     

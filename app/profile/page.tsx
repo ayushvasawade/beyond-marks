@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { auth } from "../firebase";
 import { onAuthStateChanged, User, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
@@ -30,7 +30,7 @@ function ProfileContent() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const fetchUserData = async (uid: string) => {
+  const fetchUserData = useCallback(async (uid: string) => {
     try {
       const db = getFirestore();
       const userDoc = await getDoc(doc(db, "users", uid));
@@ -101,7 +101,7 @@ function ProfileContent() {
         });
       }
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
