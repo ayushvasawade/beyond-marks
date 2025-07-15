@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-interface DoubtData {
+export interface DoubtData {
   title: string;
   body: string;
   tags: string[];

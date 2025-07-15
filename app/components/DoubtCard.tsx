@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 
 // Define a minimal User type for currentUser
-interface UserLike {
+export interface UserLike {
   uid: string;
   [key: string]: unknown;
 }

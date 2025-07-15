@@ -7,7 +7,7 @@ interface ValidationResult {
   score: number; // 0-100
 }
 
-function validateHTMLStructure(code: string, task: string): ValidationResult {
+function validateHTMLStructure(code: string, _task: string): ValidationResult {
   const hasHtml = code.includes('<html') || code.includes('<!DOCTYPE');
   const hasHead = code.includes('<head');
   const hasBody = code.includes('<body');
@@ -35,7 +35,7 @@ function validateHTMLStructure(code: string, task: string): ValidationResult {
   };
 }
 
-function validateCSSStructure(code: string, task: string): ValidationResult {
+function validateCSSStructure(code: string, _task: string): ValidationResult {
   const hasCss = code.includes('{') && code.includes('}');
   const hasSelectors = code.includes('h1') || code.includes('h2') || code.includes('p') || code.includes('div') || code.includes('.') || code.includes('#');
   const hasProperties = code.includes('color') || code.includes('background') || code.includes('font') || code.includes('margin') || code.includes('padding');
@@ -146,7 +146,7 @@ function validateBestPractices(code: string): string[] {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { code, task, xp } = body;
+    const { code, task } = body;
     
     if (!code || !task) {
       return NextResponse.json({ 
@@ -197,7 +197,7 @@ export async function POST(req: NextRequest) {
     
     return NextResponse.json(result);
     
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Validation error:", error);
     return NextResponse.json({ 
       error: "Failed to validate code",

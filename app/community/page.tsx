@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { auth } from "../firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
 import DoubtCard, { type Doubt } from "../components/DoubtCard";
-import CreateDoubtModal from "../components/CreateDoubtModal";
+import type { UserLike } from "../components/DoubtCard";
+import CreateDoubtModal, { DoubtData } from "../components/CreateDoubtModal";
 import ClientOnly from "../components/ClientOnly";
 
 // Add types for connections and doubts
@@ -26,7 +26,6 @@ function CommunityHubContent() {
   const [filter, setFilter] = useState("all");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [connections, setConnections] = useState<Connection[]>([]);
-  const router = useRouter();
 
   // Move fetchDoubts and fetchConnections above useEffect and wrap with useCallback
   const fetchDoubts = React.useCallback(async () => {
@@ -77,7 +76,7 @@ function CommunityHubContent() {
     return () => unsubscribe();
   }, [fetchDoubts, fetchConnections]);
 
-  const handleCreateDoubt = async (doubtData: any) => {
+  const handleCreateDoubt = async (doubtData: DoubtData) => {
     try {
       const token = await auth.currentUser?.getIdToken();
       const response = await fetch('http://localhost:5000/api/community/doubts', {
@@ -98,7 +97,7 @@ function CommunityHubContent() {
     }
   };
 
-  const handleConnect = async (userId: any) => {
+  const handleConnect = async (userId: string) => {
     try {
       const token = await auth.currentUser?.getIdToken();
       const response = await fetch(`http://localhost:5000/api/community/connect/${userId}`, {
@@ -262,7 +261,7 @@ function CommunityHubContent() {
                   <DoubtCard
                     key={doubt.id}
                     doubt={doubt}
-                    currentUser={user as any}
+                    currentUser={user as unknown as UserLike}
                     onConnect={handleConnect}
                     onReply={() => fetchDoubts()}
                     onResolve={() => fetchDoubts()}

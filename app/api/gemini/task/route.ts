@@ -70,13 +70,12 @@ export async function POST(req: NextRequest) {
 
     // Test basic import first
     console.log("Importing Gemini SDK...");
-    let model;
     try {
       const { GoogleGenerativeAI } = await import("@google/generative-ai");
       console.log("Gemini SDK imported successfully");
-
       const gemini = new GoogleGenerativeAI(apiKey);
-      model = gemini.getGenerativeModel({ model: "gemini-1.0-pro" });
+      // Model is created but not used, so we remove the assignment to 'model'
+      gemini.getGenerativeModel({ model: "gemini-1.0-pro" });
       console.log("Model created successfully");
     } catch (importError: unknown) {
       console.error("Import error:", importError);
@@ -86,22 +85,7 @@ export async function POST(req: NextRequest) {
         throw new Error("Failed to import Gemini SDK: Unknown error");
       }
     }
-    
-    let prompt = "";
-    
-    if (hint) {
-      prompt = `Give a hint for this HTML/CSS task based on the following code and context. Code: ${code} XP: ${xp} Goal: ${goal} Errors: ${errors}`;
-    } else if (explain) {
-      prompt = `Explain the following HTML/CSS code in simple terms: ${code}`;
-    } else {
-      prompt = `You are an AI teaching assistant for HTML/CSS. Based on the student's last code, XP (${xp}), goal (${goal}), and mistakes (${errors}), generate:
-- A new learning task
-- A challenge (extra step)
-- A tip for success
-Respond as JSON: { task, challenge, tip }`;
-    }
-
-    console.log("Sending request to Gemini...");
+    // Remove unused 'prompt' variable and use inline strings for logging if needed
     
     // Always use fallback response to avoid quota issues
     console.log("Using fallback response to avoid quota issues");

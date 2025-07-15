@@ -31,8 +31,6 @@ type ValidationResult = {
 
 export default function HTMLCSSLearning() {
   const [user, setUser] = useState<User | null>(null);
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [loading, setLoading] = useState(true);
   const [xpAnim, setXpAnim] = useState(false);
   const [editorHtml, setEditorHtml] = useState("<h1>Hello, world!</h1>\n<p>Welcome to BeyondMarks!</p>");
   const [editorCss, setEditorCss] = useState("h1 { color: #00bcd4; }\np { color: #fff; }");
@@ -50,7 +48,6 @@ export default function HTMLCSSLearning() {
   const [showHint, setShowHint] = useState(false);
   const [hint, setHint] = useState("");
   const [explanation, setExplanation] = useState("");
-  const [validationResult, setValidationResult] = useState<ValidationResult | null>(null);
   const [validating, setValidating] = useState(false);
   const [alert, setAlert] = useState({
     isOpen: false,
@@ -80,7 +77,7 @@ export default function HTMLCSSLearning() {
             completedTasks: data.completedTasks || [],
             achievements: data.achievements || [],
           };
-          setUserData(userDataWithDefaults);
+          // setUserData(userDataWithDefaults); // Removed
           setXp(userDataWithDefaults.xp);
           setLevel(userDataWithDefaults.level);
           setStreak(userDataWithDefaults.streak);
@@ -91,7 +88,7 @@ export default function HTMLCSSLearning() {
           setEditorHtml(userDataWithDefaults.lastCode);
         }
       }
-      setLoading(false);
+      // setLoading(false); // Removed
     });
     return () => unsubscribe();
   }, []);
@@ -134,7 +131,7 @@ export default function HTMLCSSLearning() {
       
       const validationData = await validateRes.json();
       console.log("Validation response:", validationData);
-      setValidationResult(validationData);
+      // setValidationResult(validationData); // Removed as per edit hint
       
       // Show validation result
       if (validationData.isValid) {
