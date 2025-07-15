@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { auth } from "../firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
 import ChatMessage from "../components/ChatMessage";
 import MoodSelector from "../components/MoodSelector";
 import ClientOnly from "../components/ClientOnly";
 
+// Define a Message type for chat messages
 interface Message {
   id: string;
   role: 'user' | 'ai';
@@ -33,7 +33,6 @@ function MentorChatContent() {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showMoodSelector, setShowMoodSelector] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -68,7 +67,7 @@ function MentorChatContent() {
       if (response.ok) {
         const data = await response.json();
         // Ensure timestamps are properly converted to Date objects
-        const processedMessages = (data.messages || []).map((msg: any) => ({
+        const processedMessages = (data.messages || []).map((msg: Message) => ({
           ...msg,
           timestamp: msg.timestamp ? new Date(msg.timestamp) : new Date()
         }));
@@ -101,9 +100,9 @@ function MentorChatContent() {
   const sendMessage = async () => {
     if (!newMessage.trim() || isSubmitting) return;
 
-    const userMessage = {
+    const userMessage: Message = {
       id: Date.now().toString(),
-      role: 'user' as const,
+      role: 'user',
       message: newMessage.trim(),
       timestamp: new Date(),
       mood: currentMood
@@ -136,9 +135,9 @@ function MentorChatContent() {
       
       if (response.ok) {
         const data = await response.json();
-        const aiMessage = {
+        const aiMessage: Message = {
           id: data.aiMessageId || Date.now().toString(),
-          role: 'ai' as const,
+          role: 'ai',
           message: data.aiResponse,
           timestamp: new Date()
         };
@@ -155,9 +154,9 @@ function MentorChatContent() {
       console.error('Error sending message:', error);
       
       // Add fallback AI message with more helpful content
-      const fallbackMessage = {
+      const fallbackMessage: Message = {
         id: Date.now().toString(),
-        role: 'ai' as const,
+        role: 'ai',
         message: (error as Error).message?.includes('Backend server') 
           ? "I&apos;m having trouble connecting to my server right now, but I&apos;m still here to help! Try asking me about your learning goals or what you&apos;re working on. You can also check if the backend server is running on port 5000."
           : "I&apos;m here to help! Let me know what you&apos;re working on or if you have any questions about your learning journey.",

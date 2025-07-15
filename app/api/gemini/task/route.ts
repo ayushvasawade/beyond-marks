@@ -74,7 +74,6 @@ export async function POST(req: NextRequest) {
       const { GoogleGenerativeAI } = await import("@google/generative-ai");
       console.log("Gemini SDK imported successfully");
       const gemini = new GoogleGenerativeAI(apiKey);
-      // Model is created but not used, so we remove the assignment to 'model'
       gemini.getGenerativeModel({ model: "gemini-1.0-pro" });
       console.log("Model created successfully");
     } catch (importError: unknown) {
@@ -85,7 +84,6 @@ export async function POST(req: NextRequest) {
         throw new Error("Failed to import Gemini SDK: Unknown error");
       }
     }
-    // Remove unused 'prompt' variable and use inline strings for logging if needed
     
     // Always use fallback response to avoid quota issues
     console.log("Using fallback response to avoid quota issues");

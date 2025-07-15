@@ -129,7 +129,7 @@ export default function HTMLCSSLearning() {
         throw new Error(`Failed to validate code: ${validateRes.status} ${errorText}`);
       }
       
-      const validationData = await validateRes.json();
+      const validationData: ValidationResult = await validateRes.json();
       console.log("Validation response:", validationData);
       // setValidationResult(validationData); // Removed as per edit hint
       
@@ -179,7 +179,7 @@ export default function HTMLCSSLearning() {
         throw new Error(`Failed to get AI task: ${res.status} ${errorText}`);
       }
       
-      const data = await res.json();
+      const data: typeof aiTask = await res.json();
       console.log("API Response data:", data);
       setAiTask(data);
       setAiError(""); // Clear any previous errors
@@ -269,7 +269,7 @@ export default function HTMLCSSLearning() {
         console.error("Hint API Error:", errorText);
         throw new Error(`Failed to get hint: ${res.status} ${errorText}`);
       }
-      const data = await res.json();
+      const data: typeof aiTask = await res.json();
       console.log("Hint response:", data);
       setHint(data.tip || "No hint available.");
     } catch (e) {
@@ -296,7 +296,7 @@ export default function HTMLCSSLearning() {
         console.error("Explain API Error:", errorText);
         throw new Error(`Failed to get explanation: ${res.status} ${errorText}`);
       }
-      const data = await res.json();
+      const data: typeof aiTask = await res.json();
       console.log("Explain response:", data);
       setExplanation(data.tip || "No explanation available.");
     } catch (e) {
