@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-bg: #181a20;
+  --color-bg-alt: #23272f;
+  --color-card: #23272f;
+  --color-accent: #38bdf8;
+  --color-accent2: #a3e635;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-shadow: 0 4px 32px 0 rgba(56,189,248,0.10);
 }
 
 @theme inline {
@@ -20,7 +28,28 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Poppins', 'Nunito', 'Quicksand', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent2);
+}
+
+input, button, textarea, select {
+  font-family: inherit;
 }
