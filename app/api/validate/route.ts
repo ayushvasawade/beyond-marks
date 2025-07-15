@@ -146,11 +146,11 @@ function validateBestPractices(code: string): string[] {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { code, task } = body;
+    const { code } = body;
     
-    if (!code || !task) {
+    if (!code) {
       return NextResponse.json({ 
-        error: "Missing required fields: code and task" 
+        error: "Missing required fields: code" 
       }, { status: 400 });
     }
     
@@ -162,9 +162,9 @@ export async function POST(req: NextRequest) {
     const hasCSS = cssMatch.length > 0;
     
     // Perform validations
-    const htmlValidation = hasHTML ? validateHTMLStructure(code, task) : { isValid: false, message: "No HTML found", suggestions: ["Add HTML structure"], score: 0 };
-    const cssValidation = hasCSS ? validateCSSStructure(code, task) : { isValid: false, message: "No CSS found", suggestions: ["Add CSS styling"], score: 0 };
-    const taskValidation = validateTaskSpecific(code, task);
+    const htmlValidation = hasHTML ? validateHTMLStructure(code, "") : { isValid: false, message: "No HTML found", suggestions: ["Add HTML structure"], score: 0 };
+    const cssValidation = hasCSS ? validateCSSStructure(code, "") : { isValid: false, message: "No CSS found", suggestions: ["Add CSS styling"], score: 0 };
+    const taskValidation = validateTaskSpecific(code, "");
     const bestPractices = validateBestPractices(code);
     
     // Calculate overall score

@@ -30,18 +30,6 @@ function ProfileContent() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setUser(user);
-      if (user) {
-        await fetchUserData(user.uid);
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
   const fetchUserData = async (uid: string) => {
     try {
       const db = getFirestore();
@@ -114,6 +102,18 @@ function ProfileContent() {
       }
     }
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setUser(user);
+      if (user) {
+        await fetchUserData(user.uid);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, [fetchUserData]);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordForm({ ...passwordForm, [e.target.name]: e.target.value });
