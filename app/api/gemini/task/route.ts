@@ -73,6 +73,7 @@ export async function POST(req: NextRequest) {
     try {
       const { GoogleGenerativeAI } = await import("@google/generative-ai");
       console.log("Gemini SDK imported successfully");
+      // Removed unused 'model' variable
       const gemini = new GoogleGenerativeAI(apiKey);
       gemini.getGenerativeModel({ model: "gemini-1.0-pro" });
       console.log("Model created successfully");
@@ -135,7 +136,7 @@ export async function POST(req: NextRequest) {
       "This is a simple webpage structure with styled text elements. The CSS is included in a style tag for immediate visual feedback."
     ];
     
-    let apiResponse: Record<string, unknown>;
+    let apiResponse: Record<string, string>;
     if (hint) {
       const hintIndex = Math.floor(Math.random() * fallbackHints.length);
       apiResponse = { tip: fallbackHints[hintIndex] };
@@ -147,7 +148,6 @@ export async function POST(req: NextRequest) {
       const taskIndex = Math.floor(Math.random() * fallbackTasks[level].length);
       const challengeIndex = Math.floor(Math.random() * fallbackChallenges.length);
       const tipIndex = Math.floor(Math.random() * fallbackTips.length);
-      
       apiResponse = {
         task: fallbackTasks[level][taskIndex],
         challenge: fallbackChallenges[challengeIndex],
