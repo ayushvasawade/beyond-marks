@@ -24,8 +24,8 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-          <h1>BeyondMarks — <span>Learn. Create. Shine.</span></h1>
-          <p className="subtitle">Personalized learning paths, real projects, no grades — just growth.</p>
+          <h1>BeyondMarks &mdash; <span>Learn. Create. Shine.</span></h1>
+          <p className="subtitle">Personalized learning paths, real projects, no grades &mdash; just growth.</p>
           <div className="hero-ctas">
             <Link href="/signup" className="cta primary">Learn HTML/CSS</Link>
             <Link href="/signup" className="cta secondary">Grow Personally</Link>
@@ -116,7 +116,7 @@ export default function Home() {
 
       {/* Testimonial */}
       <section className="testimonial">
-        <blockquote>"Finally a platform where I feel excited to learn!" <span>— Student</span></blockquote>
+        <blockquote>&quot;Finally a platform where I feel excited to learn!&quot; <span>&mdash; Student</span></blockquote>
       </section>
 
       {/* Footer */}
@@ -149,7 +149,7 @@ export default function Home() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} BeyondMarks. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} BeyondMarks. All rights reserved.</p>
         </div>
       </footer>
 

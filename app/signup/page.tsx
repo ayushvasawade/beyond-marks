@@ -52,8 +52,12 @@ export default function SignUp() {
       });
       setMessage("Account created! Redirecting to login...");
       setTimeout(() => router.push("/login"), 1500);
-    } catch (err: any) {
-      setError(err.message || "Failed to create account. Try again.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message || "Failed to create account. Try again.");
+      } else {
+        setError("Failed to create account. Try again.");
+      }
     } finally {
       setLoading(false);
     }

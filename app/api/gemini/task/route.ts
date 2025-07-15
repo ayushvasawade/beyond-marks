@@ -20,8 +20,18 @@ function checkRateLimit(identifier: string, maxRequests: number = 10, windowMs: 
   return true;
 }
 
+// Define the expected request body type
+interface GeminiTaskRequestBody {
+  code: string;
+  xp?: number;
+  goal?: string;
+  errors?: string[];
+  hint?: boolean;
+  explain?: boolean;
+}
+
 export async function POST(req: NextRequest) {
-  let body: any = {};
+  let body: GeminiTaskRequestBody = { code: "" };
   
   try {
     console.log("API route called");
@@ -68,9 +78,13 @@ export async function POST(req: NextRequest) {
       const gemini = new GoogleGenerativeAI(apiKey);
       model = gemini.getGenerativeModel({ model: "gemini-1.0-pro" });
       console.log("Model created successfully");
-    } catch (importError: any) {
+    } catch (importError: unknown) {
       console.error("Import error:", importError);
-      throw new Error(`Failed to import Gemini SDK: ${importError.message}`);
+      if (importError instanceof Error) {
+        throw new Error(`Failed to import Gemini SDK: ${importError.message}`);
+      } else {
+        throw new Error("Failed to import Gemini SDK: Unknown error");
+      }
     }
     
     let prompt = "";
@@ -162,15 +176,15 @@ Respond as JSON: { task, challenge, tip }`;
     console.log("Returning response");
     return NextResponse.json(apiResponse);
     
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("API Error details:", {
-      message: e?.message,
-      stack: e?.stack,
-      name: e?.name
+      message: e instanceof Error ? e.message : String(e),
+      stack: e instanceof Error ? e.stack : undefined,
+      name: e instanceof Error ? e.name : undefined
     });
     
     // Handle quota exceeded errors specifically
-    if (e?.message?.includes('429') || e?.message?.includes('quota') || e?.message?.includes('Too Many Requests')) {
+    if (e instanceof Error && (e.message?.includes('429') || e.message?.includes('quota') || e.message?.includes('Too Many Requests'))) {
       console.log("Quota exceeded, using fallback response");
       
       // Simple fallback responses
@@ -253,8 +267,8 @@ Respond as JSON: { task, challenge, tip }`;
     
     return NextResponse.json({ 
       error: "Gemini API error", 
-      details: e?.message || "Unknown error",
-      type: e?.name || "Unknown"
+      details: e instanceof Error ? e.message : String(e),
+      type: e instanceof Error ? e.name : "Unknown"
     }, { status: 500 });
   }
 } 

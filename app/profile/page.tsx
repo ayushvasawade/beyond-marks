@@ -97,19 +97,21 @@ function ProfileContent() {
         await setDoc(doc(db, "users", uid), defaultData);
         setUserData(defaultData);
       }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      // Fallback to basic user data
-      setUserData({
-        name: user?.displayName || "User",
-        username: user?.displayName || "user",
-        email: user?.email || "",
-        xp: 0,
-        level: 1,
-        joinDate: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-        completedModules: 0,
-        totalModules: 5
-      });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error fetching user data:", error);
+        // Fallback to basic user data
+        setUserData({
+          name: user?.displayName || "User",
+          username: user?.displayName || "user",
+          email: user?.email || "",
+          xp: 0,
+          level: 1,
+          joinDate: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+          completedModules: 0,
+          totalModules: 5
+        });
+      }
     }
   };
 
@@ -155,8 +157,12 @@ function ProfileContent() {
       setMessage("Password updated successfully!");
       setShowPasswordForm(false);
       setPasswordForm({ currentPassword: "", newPassword: "", confirmPassword: "" });
-    } catch (error: any) {
-      setError(error.message || "Failed to update password. Please try again.");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message || "Failed to update password. Please try again.");
+      } else {
+        setError("Failed to update password. Please try again.");
+      }
     }
   };
 

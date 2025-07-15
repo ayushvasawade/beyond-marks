@@ -2,10 +2,16 @@
 import React, { useState } from "react";
 import { auth } from "../firebase";
 
+// Define a minimal User type for currentUser
+interface UserLike {
+  uid: string;
+  [key: string]: unknown;
+}
+
 interface Reply {
   uid: string;
   message: string;
-  created_at: any;
+  created_at: Date | string | { toDate: () => Date };
   reactions: {
     thanks: number;
     helpful: number;
@@ -18,7 +24,7 @@ interface Doubt {
   title: string;
   body: string;
   tags: string[];
-  created_at: any;
+  created_at: Date | string | { toDate: () => Date };
   resolved: boolean;
   replies: Reply[];
   reactions: {
@@ -33,9 +39,11 @@ interface Doubt {
   };
 }
 
+export type { Doubt };
+
 interface DoubtCardProps {
   doubt: Doubt;
-  currentUser: any;
+  currentUser: UserLike | null;
   onConnect: (userId: string) => void;
   onReply: () => void;
   onResolve: () => void;
@@ -65,8 +73,12 @@ export default function DoubtCard({ doubt, currentUser, onConnect, onReply, onRe
         setNewReply("");
         onReply();
       }
-    } catch (error) {
-      console.error('Error adding reply:', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error adding reply:', error.message);
+      } else {
+        console.error('Error adding reply:', error);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -86,14 +98,27 @@ export default function DoubtCard({ doubt, currentUser, onConnect, onReply, onRe
       if (response.ok) {
         onResolve();
       }
-    } catch (error) {
-      console.error('Error marking doubt resolved:', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error marking doubt resolved:', error.message);
+      } else {
+        console.error('Error marking doubt resolved:', error);
+      }
     }
   };
 
-  const formatDate = (date: any) => {
+  const formatDate = (date: Date | string | { toDate: () => Date }) => {
     if (!date) return '';
-    const d = date.toDate ? date.toDate() : new Date(date);
+    let d: Date;
+    if (typeof date === 'string') {
+      d = new Date(date);
+    } else if (date instanceof Date) {
+      d = date;
+    } else if (typeof date === 'object' && typeof date.toDate === 'function') {
+      d = date.toDate();
+    } else {
+      return '';
+    }
     return d.toLocaleDateString('en-US', { 
       month: 'short', 
       day: 'numeric',

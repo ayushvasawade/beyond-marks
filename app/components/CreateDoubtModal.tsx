@@ -1,9 +1,15 @@
 "use client";
 import React, { useState } from "react";
 
+interface DoubtData {
+  title: string;
+  body: string;
+  tags: string[];
+}
+
 interface CreateDoubtModalProps {
   onClose: () => void;
-  onSubmit: (doubtData: any) => void;
+  onSubmit: (doubtData: DoubtData) => void;
 }
 
 export default function CreateDoubtModal({ onClose, onSubmit }: CreateDoubtModalProps) {

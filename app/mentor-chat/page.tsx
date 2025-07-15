@@ -159,8 +159,8 @@ function MentorChatContent() {
         id: Date.now().toString(),
         role: 'ai' as const,
         message: (error as Error).message?.includes('Backend server') 
-          ? "I'm having trouble connecting to my server right now, but I'm still here to help! Try asking me about your learning goals or what you're working on. You can also check if the backend server is running on port 5000."
-          : "I'm here to help! Let me know what you're working on or if you have any questions about your learning journey.",
+          ? "I&apos;m having trouble connecting to my server right now, but I&apos;m still here to help! Try asking me about your learning goals or what you&apos;re working on. You can also check if the backend server is running on port 5000."
+          : "I&apos;m here to help! Let me know what you&apos;re working on or if you have any questions about your learning journey.",
         timestamp: new Date()
       };
       setMessages(prev => [...prev, fallbackMessage]);

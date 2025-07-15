@@ -23,6 +23,12 @@ const initialTask = {
   tip: "Use <h1> for the heading and <p> for the paragraph. In CSS, use color: blue; for the h1 selector."
 };
 
+// Define a type for validation result (minimal, expand as needed)
+type ValidationResult = {
+  isValid: boolean;
+  suggestions: string[];
+};
+
 export default function HTMLCSSLearning() {
   const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -44,7 +50,7 @@ export default function HTMLCSSLearning() {
   const [showHint, setShowHint] = useState(false);
   const [hint, setHint] = useState("");
   const [explanation, setExplanation] = useState("");
-  const [validationResult, setValidationResult] = useState<any>(null);
+  const [validationResult, setValidationResult] = useState<ValidationResult | null>(null);
   const [validating, setValidating] = useState(false);
   const [alert, setAlert] = useState({
     isOpen: false,
@@ -193,9 +199,15 @@ export default function HTMLCSSLearning() {
           });
           setXp(xp + 10);
           setCompletedTasks([...completedTasks, data.task]);
-        } catch (firebaseError: any) {
+        } catch (firebaseError: unknown) {
           // If document doesn't exist, create it
-          if (firebaseError.code === 'not-found' || firebaseError.message.includes('No document to update')) {
+          if (
+            firebaseError &&
+            typeof firebaseError === 'object' &&
+            'code' in firebaseError &&
+            (firebaseError as { code?: string; message?: string }).code === 'not-found' ||
+            (firebaseError as { message?: string }).message?.includes('No document to update')
+          ) {
             console.log("Creating new user document...");
             await setDoc(doc(db, "users", user.uid), {
               xp: xp + 10,

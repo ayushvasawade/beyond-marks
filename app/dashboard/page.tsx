@@ -90,16 +90,6 @@ function DashboardContent() {
     );
   }
 
-  const handleNavigate = () => {
-    console.log('Navigating to /htmlcss...');
-    router.push('/htmlcss');
-  };
-
-  const handleTestNavigate = () => {
-    console.log('Testing direct navigation...');
-    window.open('/htmlcss', '_self');
-  };
-
   return (
     <main className="learn-bg">
       {/* Header/Navbar */}
@@ -130,7 +120,7 @@ function DashboardContent() {
           <h1 className="hero-greeting">
             Hi, {user.displayName?.split(' ')[0] || 'Student'}! Ready to grow today?
           </h1>
-          <p className="hero-quote">"Learning is not about marks, it's about growth. Go Beyond!"</p>
+          <p className="hero-quote">"Learning is not about marks, it&apos;s about growth. Go Beyond!"</p>
         </div>
       </section>
 

@@ -4,18 +4,66 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { auth } from "../firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
-import DoubtCard from "../components/DoubtCard";
+import DoubtCard, { type Doubt } from "../components/DoubtCard";
 import CreateDoubtModal from "../components/CreateDoubtModal";
 import ClientOnly from "../components/ClientOnly";
+
+// Add types for connections and doubts
+interface Connection {
+  uid: string;
+  name: string;
+  total_replies_helped: number;
+}
+interface DoubtItem {
+  id: string;
+  // Add other properties as needed
+}
 
 function CommunityHubContent() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [doubts, setDoubts] = useState([]);
+  const [doubts, setDoubts] = useState<Doubt[]>([]);
   const [filter, setFilter] = useState("all");
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [connections, setConnections] = useState([]);
+  const [connections, setConnections] = useState<Connection[]>([]);
   const router = useRouter();
+
+  // Move fetchDoubts and fetchConnections above useEffect and wrap with useCallback
+  const fetchDoubts = React.useCallback(async () => {
+    try {
+      const token = await auth.currentUser?.getIdToken();
+      const response = await fetch(`http://localhost:5000/api/community/doubts?filter=${filter}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setDoubts(data.doubts);
+      }
+    } catch (error) {
+      console.error('Error fetching doubts:', error);
+    }
+  }, [filter]);
+
+  const fetchConnections = React.useCallback(async () => {
+    try {
+      const token = await auth.currentUser?.getIdToken();
+      const response = await fetch('http://localhost:5000/api/community/connections', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setConnections(data.connections);
+      }
+    } catch (error) {
+      console.error('Error fetching connections:', error);
+    }
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -27,47 +75,9 @@ function CommunityHubContent() {
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [fetchDoubts, fetchConnections]);
 
-  const fetchDoubts = async () => {
-    try {
-      const token = await auth.currentUser?.getIdToken();
-      const response = await fetch(`http://localhost:5000/api/community/doubts?filter=${filter}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        setDoubts(data.doubts);
-      }
-    } catch (error) {
-      console.error('Error fetching doubts:', error);
-    }
-  };
-
-  const fetchConnections = async () => {
-    try {
-      const token = await auth.currentUser?.getIdToken();
-      const response = await fetch('http://localhost:5000/api/community/connections', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        setConnections(data.connections);
-      }
-    } catch (error) {
-      console.error('Error fetching connections:', error);
-    }
-  };
-
-  const handleCreateDoubt = async (doubtData) => {
+  const handleCreateDoubt = async (doubtData: any) => {
     try {
       const token = await auth.currentUser?.getIdToken();
       const response = await fetch('http://localhost:5000/api/community/doubts', {
@@ -88,7 +98,7 @@ function CommunityHubContent() {
     }
   };
 
-  const handleConnect = async (userId) => {
+  const handleConnect = async (userId: any) => {
     try {
       const token = await auth.currentUser?.getIdToken();
       const response = await fetch(`http://localhost:5000/api/community/connect/${userId}`, {
@@ -252,7 +262,7 @@ function CommunityHubContent() {
                   <DoubtCard
                     key={doubt.id}
                     doubt={doubt}
-                    currentUser={user}
+                    currentUser={user as any}
                     onConnect={handleConnect}
                     onReply={() => fetchDoubts()}
                     onResolve={() => fetchDoubts()}
