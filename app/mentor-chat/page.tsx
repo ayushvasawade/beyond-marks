@@ -336,7 +336,7 @@ function MentorChatContent() {
               <div className="welcome-message">
                 <div className="welcome-icon">🤖</div>
                 <h3>Welcome to your AI Mentor!</h3>
-                <p>I'm here to support your learning journey. Ask me anything about:</p>
+                <p>I&apos;m here to support your learning journey. Ask me anything about:</p>
                 <ul className="welcome-topics">
                   <li>📚 Understanding concepts</li>
                   <li>💡 Problem-solving strategies</li>

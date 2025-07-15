@@ -120,7 +120,7 @@ function DashboardContent() {
           <h1 className="hero-greeting">
             Hi, {user.displayName?.split(' ')[0] || 'Student'}! Ready to grow today?
           </h1>
-          <p className="hero-quote">"Learning is not about marks, it&apos;s about growth. Go Beyond!"</p>
+          <p className="hero-quote">&quot;Learning is not about marks, it&apos;s about growth. Go Beyond!&quot;</p>
         </div>
       </section>
 
