@@ -135,7 +135,7 @@ export async function POST(req: NextRequest) {
       "This is a simple webpage structure with styled text elements. The CSS is included in a style tag for immediate visual feedback."
     ];
     
-    let apiResponse;
+    let apiResponse: Record<string, unknown>;
     if (hint) {
       const hintIndex = Math.floor(Math.random() * fallbackHints.length);
       apiResponse = { tip: fallbackHints[hintIndex] };
@@ -219,7 +219,7 @@ export async function POST(req: NextRequest) {
       ];
       
       // Generate fallback response based on request type
-      let fallbackResponse;
+      let fallbackResponse: Record<string, unknown>;
       if (body.hint) {
         const hintIndex = Math.floor(Math.random() * fallbackHints.length);
         fallbackResponse = { tip: fallbackHints[hintIndex] };
