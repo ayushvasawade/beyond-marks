@@ -54,8 +54,12 @@ export default function CreateDoubtModal({ onClose, onSubmit }: CreateDoubtModal
       setBody("");
       setTags([]);
       setNewTag("");
-    } catch (error) {
-      console.error('Error creating doubt:', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error creating doubt:', error.message);
+      } else {
+        console.error('Error creating doubt:', error);
+      }
     } finally {
       setIsSubmitting(false);
     }

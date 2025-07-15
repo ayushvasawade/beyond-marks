@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
   try {
     console.log("API route called");
     
-    body = await req.json();
+    body = (await req.json()) as GeminiTaskRequestBody;
     console.log("Request body:", body);
     
     const { code, xp, goal, errors, hint, explain } = body;
