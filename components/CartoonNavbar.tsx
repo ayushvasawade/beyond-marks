@@ -14,12 +14,12 @@ const navLinks = [
 
 const CartoonNavbar: React.FC = () => (
   <nav
-    className="w-full flex flex-col sm:flex-row items-center justify-between py-4 px-4 sm:px-10 border-b-4 border-black bg-white z-10"
+    className="w-full flex flex-col sm:flex-row items-center justify-between py-4 px-4 sm:px-10 border-b-4 border-[var(--lemonade-3)] bg-[var(--lemonade-1)] z-10"
     aria-label="Main navigation"
   >
     {/* Logo */}
-    <div className="text-3xl sm:text-4xl font-bold text-black select-none cartoon-outline" aria-label="BeyondMarks logo">
-      BeyondMarks
+    <div className="text-3xl sm:text-4xl font-bold text-[var(--lemonade-3)] select-none cartoon-outline" aria-label="BeyondMarks logo">
+      <span className="text-[var(--lemonade-4)]">Beyond</span>Marks
     </div>
     {/* Nav Links */}
     <ul className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-3 sm:mt-0 items-center">
@@ -27,10 +27,10 @@ const CartoonNavbar: React.FC = () => (
         <li key={link.name}>
           <a
             href={link.href}
-            className="relative px-4 py-2 text-lg font-bold text-black rounded-xl transition-all duration-150 cartoon-outline hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-black"
+            className="relative px-4 py-2 text-lg font-bold text-[var(--lemonade-3)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--lemonade-4)]"
             tabIndex={0}
           >
-            <span className="cartoon-bubble-hover">{link.name}</span>
+            {link.name}
           </a>
         </li>
       ))}
@@ -43,18 +43,8 @@ const CartoonNavbar: React.FC = () => (
     </div>
     <style jsx>{`
       .cartoon-outline {
-        -webkit-text-stroke: 2px #000;
-        color: #fff;
-      }
-      .cartoon-bubble-hover {
-        position: relative;
-        z-index: 1;
-        transition: box-shadow 0.15s, background 0.15s;
-      }
-      a:hover .cartoon-bubble-hover, a:focus .cartoon-bubble-hover {
-        box-shadow: 0 0 0 4px #000, 0 0 0 8px #fff;
-        background: #fff;
-        border-radius: 1.2em;
+        -webkit-text-stroke: 2px var(--lemonade-3);
+        color: var(--lemonade-1);
       }
     `}</style>
   </nav>
