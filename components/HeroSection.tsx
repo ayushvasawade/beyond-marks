@@ -6,7 +6,7 @@ const HERO_WIDTH = 1200;
 const HERO_HEIGHT = 500;
 
 const HeroSection: React.FC = () => (
-  <section className="relative w-full flex flex-col items-center justify-center py-12 sm:py-20 overflow-hidden bg-[var(--lemonade-1)]">
+  <section className="relative w-full flex flex-col items-center justify-center py-12 sm:py-20 overflow-hidden">
     {/* Cartoon-style background doodles */}
     <div className="absolute inset-0 pointer-events-none z-0">
       <svg
@@ -45,7 +45,7 @@ const HeroSection: React.FC = () => (
     {/* Content */}
     <div className="relative z-10 flex flex-col items-center text-center max-w-2xl">
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold cartoon-outline mb-6 leading-tight">
-        Go Beyond Marks. Learn. Grow. Become You.
+        Go <span className="text-[var(--lemonade-4)]">Beyond</span> <span className="text-[var(--lemonade-2)]">Marks</span>. Learn. Grow. Become You.
       </h1>
       <p className="text-lg sm:text-xl font-semibold mb-8 max-w-xl text-[var(--lemonade-3)]">
         An AI-powered platform for skills, confidence, and real progress. No more rote memorization.

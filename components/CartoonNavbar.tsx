@@ -3,12 +3,13 @@
 import { SignInButton } from '@clerk/nextjs';
 import React from 'react';
 import CartoonButton from './CartoonButton';
+import Link from 'next/link';
 
 const navLinks = [
-  { name: 'Home', href: '#' },
+  { name: 'Home', href: '/' },
   { name: 'Features', href: '#features' },
   { name: 'AI Mentor', href: '#ai-mentor' },
-  { name: 'Dashboard', href: '#dashboard' },
+  { name: 'Dashboard', href: '/dashboard' },
   { name: 'Community', href: '#community' },
 ];
 
@@ -18,28 +19,28 @@ const CartoonNavbar: React.FC = () => (
     aria-label="Main navigation"
   >
     {/* Logo */}
-    <div className="text-3xl sm:text-4xl font-bold text-[var(--lemonade-3)] select-none cartoon-outline" aria-label="BeyondMarks logo">
-      <span className="text-[var(--lemonade-4)]">Beyond</span>Marks
-    </div>
+    <Link href="/" className="text-3xl sm:text-4xl font-bold text-[var(--lemonade-3)] select-none cartoon-outline" aria-label="BeyondMarks logo">
+      <span className="text-[var(--lemonade-4)]">Beyond</span><span className="text-[var(--lemonade-2)]">Marks</span>
+    </Link>
     {/* Nav Links */}
     <ul className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-3 sm:mt-0 items-center">
       {navLinks.map((link) => (
         <li key={link.name}>
-          <a
+          <Link
             href={link.href}
             className="relative px-4 py-2 text-lg font-bold text-[var(--lemonade-3)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--lemonade-4)]"
             tabIndex={0}
           >
             {link.name}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
     {/* Single Sign In / Sign Up Button (links to custom sign-in page) */}
     <div className="mt-3 sm:mt-0">
-      <a href="/sign-in">
+      <Link href="/sign-in">
         <CartoonButton>Sign In / Sign Up</CartoonButton>
-      </a>
+      </Link>
     </div>
     <style jsx>{`
       .cartoon-outline {

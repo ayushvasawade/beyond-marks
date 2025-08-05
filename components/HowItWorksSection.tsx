@@ -10,12 +10,12 @@ const steps = [
 ];
 
 const HowItWorksSection: React.FC = () => (
-  <section className="w-full max-w-4xl py-16 flex flex-col items-center bg-[var(--lemonade-1)]">
+  <section className="w-full max-w-4xl py-16 flex flex-col items-center">
     <h2 className="text-2xl sm:text-3xl font-bold cartoon-outline mb-12 text-[var(--lemonade-3)]">How It Works</h2>
     <div className="relative w-full flex flex-col items-center">
-      {/* Wavy timeline SVG */}
+      {/* Straight timeline SVG */}
       <svg className="hidden sm:block absolute left-0 right-0 top-1/2 -translate-y-1/2 z-0" width="100%" height="80" viewBox="0 0 900 80" fill="none" preserveAspectRatio="none">
-        <path d="M 20 40 Q 150 0 280 40 T 540 40 T 800 40" stroke="var(--lemonade-3)" strokeWidth="4" fill="none"/>
+        <line x1="50" y1="40" x2="850" y2="40" stroke="var(--lemonade-3)" strokeWidth="4" strokeDasharray="8,8"/>
       </svg>
       <div className="flex flex-col sm:flex-row w-full justify-between items-center relative z-10">
         {steps.map((step, idx) => (
@@ -25,7 +25,7 @@ const HowItWorksSection: React.FC = () => (
             style={{ zIndex: 2 }}
           >
             <div className="flex flex-col items-center justify-center">
-              <div className="mb-2" aria-hidden>{step.icon}</div>
+              <div className="mb-2 bg-[var(--lemonade-1)] p-2 rounded-full border-4 border-[var(--lemonade-3)]" aria-hidden>{step.icon}</div>
               <span className="font-bold text-lg cartoon-outline text-center whitespace-nowrap mt-1 text-[var(--lemonade-3)]">{step.label}</span>
             </div>
             {/* Connector dot for mobile */}
@@ -36,13 +36,14 @@ const HowItWorksSection: React.FC = () => (
         ))}
       </div>
       {/* Mobile vertical line */}
-      <svg className="sm:hidden absolute left-1/2 -translate-x-1/2 top-16 bottom-16 z-0" width="4" height="100%" viewBox="0 0 4 400" preserveAspectRatio="none"><rect x="0" y="0" width="4" height="400" rx="2" fill="var(--lemonade-3)" opacity="0.12"/></svg>
+      <svg className="sm:hidden absolute left-1/2 -translate-x-1/2 top-16 bottom-16 z-0" width="4" height="100%" viewBox="0 0 4 400" preserveAspectRatio="none">
+        <line x1="2" y1="0" x2="2" y2="400" stroke="var(--lemonade-3)" strokeWidth="4" strokeDasharray="8,8"/>
+      </svg>
     </div>
     <style jsx>{`
-      .cartoon-outline {
-        -webkit-text-stroke: 2px var(--lemonade-3);
-        color: var(--lemonade-1);
-      }
+     .cartoon-outline {
+         color: var(--lemonade-5);
+        }
     `}</style>
   </section>
 );

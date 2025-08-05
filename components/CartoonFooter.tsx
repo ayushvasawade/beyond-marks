@@ -28,14 +28,13 @@ const CartoonFooter: React.FC = () => (
       </a>
     </div>
     <div className="font-bold text-lg cartoon-outline flex items-center gap-2 text-[var(--lemonade-3)]">
-      Thanks for visiting <span className="text-[var(--lemonade-4)]">Beyond</span>Marks!
+      Thanks for visiting <span className="text-[var(--lemonade-4)]">Beyond</span><span className="text-[var(--lemonade-2)]">Marks</span>!
       <span aria-label="waving hand" role="img">👋</span>
     </div>
     <style jsx>{`
       .cartoon-outline {
-        -webkit-text-stroke: 2px var(--lemonade-3);
-        color: var(--lemonade-1);
-      }
+         color: var(--lemonade-5);
+        }
       .cartoon-footer {
         box-shadow: 0 -4px 0 0 var(--lemonade-3);
       }

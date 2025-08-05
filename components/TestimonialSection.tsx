@@ -2,7 +2,7 @@
 import React from 'react';
 
 const TestimonialSection: React.FC = () => (
-  <section className="w-full max-w-2xl py-12 flex flex-col items-center bg-[var(--lemonade-1)]">
+  <section className="w-full max-w-2xl py-12 flex flex-col items-center">
     <div className="relative w-full max-w-xl bg-[var(--lemonade-2)] border-4 border-[var(--lemonade-3)] rounded-3xl p-8 cartoon-speech-bubble">
       <div className="flex items-center gap-4 mb-4">
         {/* Cartoon student avatar */}
@@ -12,8 +12,8 @@ const TestimonialSection: React.FC = () => (
       <blockquote className="text-xl font-semibold cartoon-outline text-[var(--lemonade-3)]">"I used to get bored in class. Now learning is actually fun!"</blockquote>
       <style jsx>{`
         .cartoon-outline {
-          -webkit-text-stroke: 2px var(--lemonade-3);
-          color: var(--lemonade-1);
+        
+          color: var(--lemonade-5);
         }
         .cartoon-speech-bubble {
           position: relative;

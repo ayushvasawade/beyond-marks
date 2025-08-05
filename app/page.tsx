@@ -8,7 +8,7 @@ import CartoonFooter from '../components/CartoonFooter';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col">
+    <div className="min-h-screen bg-[var(--lemonade-1)] text-[var(--lemonade-3)] flex flex-col">
       <CartoonNavbar />
       <main className="flex-1 w-full flex flex-col items-center px-2 sm:px-0">
         <HeroSection />

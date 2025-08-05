@@ -10,9 +10,9 @@ const reasons = [
 ];
 
 const WhyBeyondMarksSection: React.FC = () => (
-  <section className="w-full max-w-3xl py-12 flex flex-col items-center bg-[var(--lemonade-1)]">
+  <section className="w-full max-w-3xl py-12 flex flex-col items-center">
     <div className="relative w-full max-w-2xl bg-[var(--lemonade-2)] border-4 border-[var(--lemonade-3)] rounded-3xl p-8 cartoon-speech-bubble">
-      <h2 className="text-2xl sm:text-3xl font-bold cartoon-outline mb-6 text-[var(--lemonade-3)]">Why <span className="text-[var(--lemonade-4)]">Beyond</span>Marks?</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold cartoon-outline mb-6 text-[var(--lemonade-3)]">Why <span className="text-[var(--lemonade-4)]">Beyond</span><span className="text-[var(--lemonade-2)]">Marks</span>?</h2>
       <ul className="space-y-4">
         {reasons.map((reason, idx) => (
           <li key={idx} className="flex items-center gap-4 text-lg font-semibold text-[var(--lemonade-3)]">

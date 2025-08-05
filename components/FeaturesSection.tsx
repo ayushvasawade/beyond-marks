@@ -30,7 +30,7 @@ const features = [
 ];
 
 const FeaturesSection: React.FC = () => (
-  <section id="features" className="w-full max-w-5xl py-12 flex flex-col items-center bg-[var(--lemonade-1)]">
+  <section id="features" className="w-full max-w-5xl py-12 flex flex-col items-center">
     <h2 className="text-3xl sm:text-4xl font-bold cartoon-outline mb-10 text-[var(--lemonade-3)]">Features</h2>
     <div className="flex flex-col sm:flex-row gap-6 w-full justify-center items-center">
       {features.map((feature) => (
@@ -38,10 +38,9 @@ const FeaturesSection: React.FC = () => (
       ))}
     </div>
     <style jsx>{`
-      .cartoon-outline {
-        -webkit-text-stroke: 2px var(--lemonade-3);
-        color: var(--lemonade-1);
-      }
+    .cartoon-outline {
+         color: var(--lemonade-5);
+        }
     `}</style>
   </section>
 );
