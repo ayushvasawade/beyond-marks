@@ -16,15 +16,18 @@ const CartoonFooter: React.FC = () => (
       ))}
     </nav>
     <div className="flex gap-4 mb-4">
-      {/* Social icons: Twitter, Facebook, Instagram */}
-      <a href="#" aria-label="Twitter" className="cartoon-social-icon" tabIndex={0}>
-        <svg width="32" height="32" fill="none" stroke="var(--lemonade-3)" strokeWidth="3"><ellipse cx="16" cy="16" rx="14" ry="14" fill="var(--lemonade-2)"/><path d="M10 18c4 2 8-2 12-6" stroke="var(--lemonade-3)" strokeWidth="2"/><path d="M12 14c2 2 6 6 10 2" stroke="var(--lemonade-3)" strokeWidth="2"/></svg>
+      {/* Social icons: X (Twitter), LinkedIn, GitHub, Instagram - accurate brand shapes */}
+      <a href="https://x.com/" aria-label="X (Twitter)" className="cartoon-social-icon" tabIndex={0} target="_blank" rel="noopener noreferrer">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="16" rx="14" ry="14" fill="var(--lemonade-2)"/><path d="M10 10l12 12M22 10l-12 12" stroke="var(--lemonade-3)" strokeWidth="2.5" strokeLinecap="round"/><path d="M10 22L22 10" stroke="var(--lemonade-3)" strokeWidth="2.5" strokeLinecap="round"/></svg>
       </a>
-      <a href="#" aria-label="Facebook" className="cartoon-social-icon" tabIndex={0}>
-        <svg width="32" height="32" fill="none" stroke="var(--lemonade-3)" strokeWidth="3"><ellipse cx="16" cy="16" rx="14" ry="14" fill="var(--lemonade-2)"/><path d="M16 10v12" stroke="var(--lemonade-3)" strokeWidth="2"/><path d="M12 16h8" stroke="var(--lemonade-3)" strokeWidth="2"/></svg>
+      <a href="https://linkedin.com/" aria-label="LinkedIn" className="cartoon-social-icon" tabIndex={0} target="_blank" rel="noopener noreferrer">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="16" rx="14" ry="14" fill="var(--lemonade-2)"/><rect x="10" y="13" width="3" height="9" fill="var(--lemonade-3)"/><rect x="15" y="13" width="3" height="9" fill="var(--lemonade-3)"/><rect x="20" y="13" width="3" height="9" fill="var(--lemonade-3)"/><circle cx="11.5" cy="11" r="1.5" fill="var(--lemonade-3)"/></svg>
       </a>
-      <a href="#" aria-label="Instagram" className="cartoon-social-icon" tabIndex={0}>
-        <svg width="32" height="32" fill="none" stroke="var(--lemonade-3)" strokeWidth="3"><ellipse cx="16" cy="16" rx="14" ry="14" fill="var(--lemonade-2)"/><rect x="10" y="10" width="12" height="12" rx="4" fill="var(--lemonade-2)" stroke="var(--lemonade-3)" strokeWidth="2"/></svg>
+      <a href="https://github.com/" aria-label="GitHub" className="cartoon-social-icon" tabIndex={0} target="_blank" rel="noopener noreferrer">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="16" rx="14" ry="14" fill="var(--lemonade-2)"/><path d="M20.5 25c0-1.5-1-2-2.5-2s-2.5.5-2.5 2" stroke="var(--lemonade-3)" strokeWidth="2" strokeLinecap="round"/><path d="M12 20c-1-2-1-5 2-7 2-1.5 4-1.5 6 0 3 2 3 5 2 7" stroke="var(--lemonade-3)" strokeWidth="2"/><circle cx="16" cy="16" r="3" fill="var(--lemonade-3)"/></svg>
+      </a>
+      <a href="https://instagram.com/" aria-label="Instagram" className="cartoon-social-icon" tabIndex={0} target="_blank" rel="noopener noreferrer">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="16" rx="14" ry="14" fill="var(--lemonade-2)"/><rect x="10" y="10" width="12" height="12" rx="4" fill="var(--lemonade-2)" stroke="var(--lemonade-3)" strokeWidth="2"/><circle cx="22" cy="12" r="1.5" fill="var(--lemonade-3)"/><rect x="14" y="14" width="4" height="4" rx="2" fill="var(--lemonade-3)"/></svg>
       </a>
     </div>
     <div className="font-bold text-lg cartoon-outline flex items-center gap-2 text-[var(--lemonade-3)]">

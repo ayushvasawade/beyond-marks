@@ -6,6 +6,7 @@ import Link from 'next/link';
 const dashboardNavLinks = [
   { name: 'Home', href: '/' },
   { name: 'Dashboard', href: '/dashboard' },
+  { name: 'Learning Lab', href: '/learning-lab' },
   { name: 'Quests', href: '/quests' },
   { name: 'Progress', href: '/progress' },
   { name: 'Community', href: '/community' },
@@ -45,14 +46,14 @@ const DashboardNavbar: React.FC = () => (
       </button>
       
       {/* User Avatar */}
-      <div className="relative">
+      <Link href="/profile" className="relative">
         <div className="w-10 h-10 bg-[var(--lemonade-2)] border-2 border-[var(--lemonade-4)] rounded-full flex items-center justify-center cursor-pointer hover:bg-[var(--lemonade-4)] hover:text-white transition-colors duration-150">
           <span className="text-lg font-bold text-[var(--lemonade-3)]">👤</span>
         </div>
         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[var(--lemonade-4)] border-2 border-white rounded-full flex items-center justify-center">
           <span className="text-xs font-bold text-white">15</span>
         </div>
-      </div>
+      </Link>
     </div>
     
     <style jsx>{`

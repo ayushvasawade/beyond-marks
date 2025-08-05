@@ -28,7 +28,7 @@ const CartoonNavbar: React.FC = () => (
         <li key={link.name}>
           <Link
             href={link.href}
-            className="relative px-4 py-2 text-lg font-bold text-[var(--lemonade-3)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--lemonade-4)]"
+            className="relative px-4 py-2 text-lg font-bold text-[var(--lemonade-3)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--lemonade-4)] hover:bg-[var(--lemonade-2)] hover:text-[var(--lemonade-3)] transition-colors duration-150"
             tabIndex={0}
           >
             {link.name}
