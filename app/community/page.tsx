@@ -6,15 +6,17 @@ import TownSquare from '../../components/community/TownSquare';
 import QAForum from '../../components/community/QAForum';
 import ProjectShowcase from '../../components/community/ProjectShowcase';
 import TheArena from '../../components/community/TheArena';
+import MemberConnections from '../../components/community/MemberConnections';
 
 const CommunityPage = () => {
-  const [activeTab, setActiveTab] = useState<'town-square' | 'qa-forum' | 'project-showcase' | 'arena'>('town-square');
+  const [activeTab, setActiveTab] = useState<'town-square' | 'qa-forum' | 'project-showcase' | 'arena' | 'connections'>('town-square');
 
   const tabs = [
     { id: 'town-square', name: 'Town Square', icon: '🏘️' },
     { id: 'qa-forum', name: 'Q&A Forum', icon: '❓' },
     { id: 'project-showcase', name: 'Project Showcase', icon: '🎨' },
     { id: 'arena', name: 'The Arena', icon: '⚔️' },
+    { id: 'connections', name: 'Connections', icon: '🤝' },
   ];
 
   const renderActiveTab = () => {
@@ -27,6 +29,8 @@ const CommunityPage = () => {
         return <ProjectShowcase />;
       case 'arena':
         return <TheArena />;
+      case 'connections':
+        return <MemberConnections />;
       default:
         return <TownSquare />;
     }
