@@ -64,7 +64,7 @@ console.log(myColors);`);
               <div className="text-sm text-[var(--lemonade-3)]">
                 <p className="mb-2">Console Output:</p>
                 <div className="bg-[var(--lemonade-5)] text-[var(--lemonade-1)] p-3 rounded font-mono text-xs">
-                  <div>['red', 'blue', 'green', 'yellow']</div>
+                  <div>{['red', 'blue', 'green', 'yellow'].join(', ')}</div>
                 </div>
               </div>
             </div>

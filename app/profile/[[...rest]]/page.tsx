@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import DashboardNavbar from '../../components/dashboard/DashboardNavbar';
-import CartoonFooter from '../../components/CartoonFooter';
-import ProfileHeader from '../../components/profile/ProfileHeader';
-import ProfileStats from '../../components/profile/ProfileStats';
-import ProfileAchievements from '../../components/profile/ProfileAchievements';
-import ProfileSettings from '../../components/profile/ProfileSettings';
+import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
+import CartoonFooter from '@/components/CartoonFooter';
+import ProfileHeader from '@/components/profile/ProfileHeader';
+import ProfileStats from '@/components/profile/ProfileStats';
+import ProfileAchievements from '@/components/profile/ProfileAchievements';
+import ProfileSettings from '@/components/profile/ProfileSettings';
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'achievements' | 'settings'>('overview');
@@ -44,6 +44,7 @@ const ProfilePage = () => {
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-lg border-4 transition-all duration-150 ${
                     activeTab === tab.id
