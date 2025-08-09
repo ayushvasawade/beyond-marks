@@ -61,7 +61,7 @@ const NextQuestCard: React.FC = () => {
         
         {/* CTA Button */}
         <div className="flex flex-col justify-center">
-          <Link href="/learning-lab">
+          <Link href="/quest">
             <button className="px-8 py-4 bg-[var(--lemonade-4)] border-4 border-[var(--lemonade-3)] rounded-2xl font-bold text-lg text-white shadow-[4px_4px_0_0_var(--lemonade-3)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0_0_var(--lemonade-3)] transition-all duration-150">
               Start Quest
             </button>
