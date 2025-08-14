@@ -37,7 +37,7 @@ const AIMentorCard: React.FC = () => {
           </div>
           <div className="flex-1">
             <p className="text-sm text-[var(--lemonade-3)]">
-              Hi! I'm GEM, your AI mentor. Ask me anything about coding, and I'll help you learn! 🚀
+              Hi! I&apos;m GEM, your AI mentor. Ask me anything about coding, and I&apos;ll help you learn! 🚀
             </p>
           </div>
         </div>

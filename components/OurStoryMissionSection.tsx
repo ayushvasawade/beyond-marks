@@ -29,7 +29,7 @@ export default function OurStoryMissionSection() {
           }}
         >
           More Than Just a Platform.{' '}
-          <span style={{ color: 'var(--lemonade-4)' }}>We're Learners Too.</span>
+          <span style={{ color: 'var(--lemonade-4)' }}>We&apos;re Learners Too.</span>
         </h2>
         {/* Narrative */}
         <div
@@ -38,11 +38,11 @@ export default function OurStoryMissionSection() {
         >
           <p>
              Like you, we were once frustrated by the traditional ways of learning to code. Lost in endless tutorials, we yearned for a more
-           supportive, adaptive, and joyful experience. That's why we built
+           supportive, adaptive, and joyful experience. That&apos;s why we built
            BeyondMarks – a platform driven by the belief that everyone can unlock their potential with the right guidance.
           </p>
           <p>
-            Our mission is simple: to create learning that truly cares. Through personalized paths, adaptive challenges and a supportive community we're here to help you go beyond just marks and start building your future with confidence.
+            Our mission is simple: to create learning that truly cares. Through personalized paths, adaptive challenges and a supportive community we&apos;re here to help you go beyond just marks and start building your future with confidence.
           </p>
         </div>
       </div>
