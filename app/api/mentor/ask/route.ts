@@ -1,46 +1,49 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
+import { ChatMistralAI } from '@langchain/mistralai';
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
+import { HumanMessage, AIMessage } from '@langchain/core/messages';
 
-export async function POST(req: Request) {
-  const apiKey = process.env.MISTRAL_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json({ error: "Missing MISTRAL_API_KEY" }, { status: 500 });
-  }
-
+export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const prompt: string = body?.prompt || "";
-    const context: string = body?.context || "";
-    if (!prompt) {
-      return NextResponse.json({ error: "Missing prompt" }, { status: 400 });
+    const { message, model: modelType, chatHistory } = await req.json();
+
+    if (!message) {
+      return NextResponse.json({ error: 'Message is required' }, { status: 400 });
     }
 
-    const messages = [
-      { role: "system", content: "You are an AI mentor helping with coding quests. Provide concise, actionable guidance." },
-      { role: "user", content: `Context:\n${context}\n\nQuestion:\n${prompt}` },
-    ];
-
-    const resp = await fetch("https://api.mistral.ai/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: "mistral-large-latest",
-        messages,
-        temperature: 0.3,
-      }),
-    });
-
-    if (!resp.ok) {
-      const txt = await resp.text();
-      return NextResponse.json({ error: `Mistral error: ${txt}` }, { status: 500 });
+    if (!modelType) {
+      return NextResponse.json({ error: 'Model type is required' }, { status: 400 });
     }
-    const data = await resp.json();
-    const answer = data?.choices?.[0]?.message?.content || "";
-    return NextResponse.json({ answer });
-  } catch {
-    return NextResponse.json({ error: "Failed to get mentor response" }, { status: 500 });
+
+    let model;
+    if (modelType === 'mistral') {
+      if (!process.env.MISTRAL_API_KEY) {
+        return NextResponse.json({ error: 'MISTRAL_API_KEY is not configured' }, { status: 500 });
+      }
+      model = new ChatMistralAI({
+        apiKey: process.env.MISTRAL_API_KEY,
+      });
+    } else if (modelType === 'gemini') {
+      if (!process.env.GEMINI_API_KEY) {
+        return NextResponse.json({ error: 'GEMINI_API_KEY is not configured' }, { status: 500 });
+      }
+      model = new ChatGoogleGenerativeAI({
+        modelName: 'gemini-2.0-flash',
+        apiKey: process.env.GEMINI_API_KEY,
+      });
+    } else {
+      return NextResponse.json({ error: 'Invalid model type' }, { status: 400 });
+    }
+
+    const messages = chatHistory.map((chat: any) =>
+      chat.sender === 'user' ? new HumanMessage(chat.text) : new AIMessage(chat.text)
+    );
+
+    const result = await model.invoke(messages);
+
+    return NextResponse.json({ response: result.content });
+  } catch (error) {
+    console.error('Error in AI mentor API:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-
