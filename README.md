@@ -186,6 +186,6 @@ We are seeking partners who share our vision of transforming Indian higher educa
 
 ---
 <div align="center">
-    <p><strong>AcadOS</strong> • Engineered in Panhala, Built for India's Future.</p>
+    <p><strong>AcadOS</strong> • Engineered in India, Built for India's Future.</p>
     <p>© 2025 AcadOS. All Rights Reserved.</p>
 </div>
