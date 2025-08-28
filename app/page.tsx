@@ -7,8 +7,14 @@ import WhyBeyondMarksSection from '../components/WhyBeyondMarksSection';
 import HowItWorksSection from '../components/HowItWorksSection';
 import TestimonialSection from '../components/TestimonialSection';
 import CartoonFooter from '../components/CartoonFooter';
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
+  const { userId } = auth();
+  if (userId) {
+    redirect('/dashboard');
+  }
   return (
     <div className="min-h-screen bg-[var(--lemonade-1)] text-[var(--lemonade-3)] flex flex-col">
       <CartoonNavbar />

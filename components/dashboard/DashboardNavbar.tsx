@@ -2,12 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 const dashboardNavLinks = [
   { name: 'Home', href: '/' },
   { name: 'Dashboard', href: '/dashboard' },
   { name: 'Learning Lab', href: '/learning-lab' },
-  { name: 'Quests', href: '/quests' },
+  { name: 'Quests', href: '/quest' },
   { name: 'Progress', href: '/progress' },
   { name: 'Community', href: '/community' },
   { name: 'Settings', href: '/settings' },
@@ -23,20 +24,21 @@ const DashboardNavbar: React.FC = () => (
       <span className="text-[var(--lemonade-4)]">Beyond</span><span className="text-[var(--lemonade-2)]">Marks</span>
     </Link>
     
-    {/* Nav Links */}
-    <ul className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-3 sm:mt-0 items-center">
-      {dashboardNavLinks.map((link) => (
-        <li key={link.name}>
-          <Link
-            href={link.href}
-            className="relative px-4 py-2 text-lg font-bold text-[var(--lemonade-3)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--lemonade-4)] hover:bg-[var(--lemonade-2)] hover:text-[var(--lemonade-3)] transition-colors duration-150"
-            tabIndex={0}
-          >
-            {link.name}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <SignedIn>
+      <ul className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-3 sm:mt-0 items-center">
+        {dashboardNavLinks.map((link) => (
+          <li key={link.name}>
+            <Link
+              href={link.href}
+              className="relative px-4 py-2 text-lg font-bold text-[var(--lemonade-3)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--lemonade-4)] hover:bg-[var(--lemonade-2)] hover:text-[var(--lemonade-3)] transition-colors duration-150"
+              tabIndex={0}
+            >
+              {link.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </SignedIn>
     
     {/* User Profile Section */}
     <div className="mt-3 sm:mt-0 flex items-center gap-4">

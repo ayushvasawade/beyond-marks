@@ -1,5 +1,9 @@
+"use client";
 import { SignIn } from "@clerk/nextjs";
+import { useSearchParams } from "next/navigation";
 
 export default function SignInPage() {
-  return <SignIn afterSignInUrl="/dashboard" afterSignUpUrl="/dashboard" />;
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirectUrl") || "/dashboard";
+  return <SignIn afterSignInUrl={redirectUrl} afterSignUpUrl={redirectUrl} />;
 }

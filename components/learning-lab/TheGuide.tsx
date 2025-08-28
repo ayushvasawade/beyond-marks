@@ -7,7 +7,7 @@ const TheGuide: React.FC = () => {
       {/* Headline */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[var(--lemonade-3)] mb-2">
-          Let's Make a List!
+          Let&apos;s Make a List!
         </h1>
         <p className="text-sm text-[var(--lemonade-3)] opacity-80">
           Learn how to create and manipulate lists in JavaScript
@@ -82,7 +82,7 @@ console.log(fruits[0]); // "apple"`}
           <h3 className="font-semibold text-[var(--lemonade-3)]">Your Task:</h3>
         </div>
         <p className="text-sm text-[var(--lemonade-3)]">
-          Create an array called "myColors" with three colors of your choice, then add a fourth color using push().
+          Create an array called &quot;myColors&quot; with three colors of your choice, then add a fourth color using push().
         </p>
       </div>
     </div>

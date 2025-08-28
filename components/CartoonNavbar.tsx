@@ -1,16 +1,14 @@
 'use client';
 
-import { SignInButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
 import React from 'react';
 import CartoonButton from './CartoonButton';
 import Link from 'next/link';
 
-const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Features', href: '#features' },
-  { name: 'AI Mentor', href: '#ai-mentor' },
+const signedInLinks = [
   { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Community', href: '#community' },
+  { name: 'Quests', href: '/quest' },
+  { name: 'Community', href: '/community' },
 ];
 
 const CartoonNavbar: React.FC = () => (
@@ -23,25 +21,29 @@ const CartoonNavbar: React.FC = () => (
       <span className="text-[var(--lemonade-4)]">Beyond</span><span className="text-[var(--lemonade-2)]">Marks</span>
     </Link>
     {/* Nav Links */}
-    <ul className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-3 sm:mt-0 items-center">
-      {navLinks.map((link) => (
-        <li key={link.name}>
-          <Link
-            href={link.href}
-            className="relative px-4 py-2 text-lg font-bold text-[var(--lemonade-3)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--lemonade-4)] hover:bg-[var(--lemonade-2)] hover:text-[var(--lemonade-3)] transition-colors duration-150"
-            tabIndex={0}
-          >
-            {link.name}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <SignedIn>
+      <ul className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-3 sm:mt-0 items-center">
+        {signedInLinks.map((link) => (
+          <li key={link.name}>
+            <Link
+              href={link.href}
+              className="relative px-4 py-2 text-lg font-bold text-[var(--lemonade-3)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--lemonade-4)] hover:bg-[var(--lemonade-2)] hover:text-[var(--lemonade-3)] transition-colors duration-150"
+              tabIndex={0}
+            >
+              {link.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </SignedIn>
     {/* Single Sign In / Sign Up Button (links to custom sign-in page) */}
-    <div className="mt-3 sm:mt-0">
-      <Link href="/sign-in">
-        <CartoonButton>Sign In / Sign Up</CartoonButton>
-      </Link>
-    </div>
+    <SignedOut>
+      <div className="mt-3 sm:mt-0">
+        <Link href="/sign-in">
+          <CartoonButton>Sign In / Sign Up</CartoonButton>
+        </Link>
+      </div>
+    </SignedOut>
     <style jsx>{`
       .cartoon-outline {
         -webkit-text-stroke: 2px var(--lemonade-3);

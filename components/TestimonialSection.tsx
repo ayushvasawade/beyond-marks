@@ -9,7 +9,7 @@ const TestimonialSection: React.FC = () => (
         <svg width="48" height="48"><circle cx="24" cy="20" r="12" fill="var(--lemonade-2)" stroke="var(--lemonade-3)" strokeWidth="4"/><ellipse cx="24" cy="38" rx="14" ry="8" fill="var(--lemonade-2)" stroke="var(--lemonade-3)" strokeWidth="4"/></svg>
         <span className="font-bold text-lg cartoon-outline text-[var(--lemonade-3)]">Student</span>
       </div>
-      <blockquote className="text-xl font-semibold cartoon-outline text-[var(--lemonade-3)]">"I used to get bored in class. Now learning is actually fun!"</blockquote>
+      <blockquote className="text-xl font-semibold cartoon-outline text-[var(--lemonade-3)]">&quot;I used to get bored in class. Now learning is actually fun!&quot;</blockquote>
       <style jsx>{`
         .cartoon-outline {
         

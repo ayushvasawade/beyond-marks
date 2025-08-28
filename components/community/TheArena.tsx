@@ -1,39 +1,94 @@
 'use client';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const TheArena: React.FC = () => {
-  const challenges = [
-    {
-      id: 1,
-      title: 'Speed Coding Challenge',
-      description: 'Build a responsive navigation bar in 30 minutes',
-      participants: 24,
-      prize: '500 XP',
-      status: 'active',
-      timeLeft: '2 hours',
-      difficulty: 'Beginner'
-    },
-    {
-      id: 2,
-      title: 'Algorithm Battle',
-      description: 'Solve complex algorithms and compete for the fastest solution',
-      participants: 18,
-      prize: '1000 XP',
-      status: 'upcoming',
-      timeLeft: '1 day',
-      difficulty: 'Advanced'
-    },
-    {
-      id: 3,
-      title: 'UI/UX Design Contest',
-      description: 'Create the most beautiful landing page design',
-      participants: 31,
-      prize: '750 XP',
-      status: 'active',
-      timeLeft: '5 hours',
-      difficulty: 'Intermediate'
+  const [matchmakingStatus, setMatchmakingStatus] = useState('idle');
+  const [matchmakingId, setMatchmakingId] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    if (matchmakingStatus === 'searching' && matchmakingId) {
+      intervalId = setInterval(async () => {
+        try {
+          const response = await fetch(`/api/arena/matchmaking/${matchmakingId}`);
+          const data = await response.json();
+          if (response.ok && data.battleId) {
+            setMatchmakingStatus('matched');
+            router.push(`/community/arena/${data.battleId}`);
+          }
+        } catch (error) {
+          console.error('Error checking matchmaking status:', error);
+        }
+      }, 5000); // Poll every 5 seconds
     }
-  ];
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [matchmakingStatus, matchmakingId, router]);
+
+  const handleMatchmaking = async () => {
+    setMatchmakingStatus('searching');
+    try {
+      const response = await fetch('/api/arena/matchmake', {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        // Handle non-JSON responses for errors
+        const errorText = await response.text();
+        console.error('Matchmaking failed:', errorText);
+        // Optionally, provide user feedback here
+        alert(`Error: ${errorText}`);
+        setMatchmakingStatus('idle');
+        return;
+      }
+
+      const data = await response.json();
+      setMatchmakingId(data.matchmakingId);
+      if (data.battleId) {
+        setMatchmakingStatus('matched');
+        router.push(`/community/arena/${data.battleId}`);
+      }
+    } catch (error) {
+      setMatchmakingStatus('idle');
+      console.error('Error during matchmaking:', error);
+      // Optionally, provide user feedback here
+      if (error instanceof Error) {
+        alert(`An unexpected error occurred: ${error.message}`);
+      } else {
+        alert('An unexpected error occurred.');
+      }
+    }
+  };
+
+  const handleCancelMatchmaking = async () => {
+    try {
+      const response = await fetch('/api/arena/matchmake', {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Failed to cancel matchmaking:', errorText);
+        alert(`Error: ${errorText}`);
+        return;
+      }
+
+      const data = await response.json();
+      setMatchmakingStatus('idle');
+      setMatchmakingId(null); // Clear matchmaking ID on cancellation
+      alert(data.message || 'Matchmaking cancelled successfully!');
+    } catch (error) {
+      console.error('Error during matchmaking cancellation:', error);
+      alert('An unexpected error occurred during cancellation.');
+    }
+  };
 
   const leaderboard = [
     { rank: 1, name: 'Sarah Chen', xp: 2840, wins: 12 },
@@ -45,55 +100,29 @@ const TheArena: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Active Challenges */}
+      {/* Matchmaking Section */}
       <div>
-        <h2 className="text-2xl font-bold text-[var(--lemonade-3)] mb-6">⚔️ Active Challenges</h2>
-        <div className="space-y-4">
-          {challenges.map((challenge) => (
-            <div key={challenge.id} className="bg-white border-4 border-[var(--lemonade-3)] rounded-2xl p-6 shadow-[4px_4px_0_0_var(--lemonade-3)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0_0_var(--lemonade-3)] transition-all duration-150">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-lg font-bold text-[var(--lemonade-3)] mb-2">{challenge.title}</h3>
-                  <p className="text-sm text-[var(--lemonade-3)] opacity-80 mb-3">{challenge.description}</p>
-                </div>
-                <div className={`px-3 py-1 rounded-full text-xs font-bold border-2 ${
-                  challenge.status === 'active' 
-                    ? 'bg-[var(--lemonade-2)] text-[var(--lemonade-3)] border-[var(--lemonade-3)]'
-                    : 'bg-[var(--lemonade-1)] text-[var(--lemonade-3)] border-[var(--lemonade-3)]'
-                }`}>
-                  {challenge.status === 'active' ? 'ACTIVE' : 'UPCOMING'}
-                </div>
-              </div>
-              
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[var(--lemonade-4)]">👥</span>
-                    <span className="text-sm font-semibold text-[var(--lemonade-3)]">{challenge.participants}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-[var(--lemonade-4)]">🏆</span>
-                    <span className="text-sm font-semibold text-[var(--lemonade-3)]">{challenge.prize}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-[var(--lemonade-4)]">⏰</span>
-                    <span className="text-sm font-semibold text-[var(--lemonade-3)]">{challenge.timeLeft}</span>
-                  </div>
-                </div>
-                <span className={`px-2 py-1 rounded-full text-xs font-bold ${
-                  challenge.difficulty === 'Beginner' ? 'bg-[var(--lemonade-2)] text-[var(--lemonade-3)]' :
-                  challenge.difficulty === 'Intermediate' ? 'bg-[var(--lemonade-4)] text-white' :
-                  'bg-[var(--lemonade-5)] text-[var(--lemonade-1)]'
-                }`}>
-                  {challenge.difficulty}
-                </span>
-              </div>
-              
-              <button className="w-full py-3 bg-[var(--lemonade-4)] border-4 border-[var(--lemonade-3)] rounded-xl font-bold text-white shadow-[4px_4px_0_0_var(--lemonade-3)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0_0_var(--lemonade-3)] transition-all duration-150">
-                Join Challenge
-              </button>
-            </div>
-          ))}
+        <h2 className="text-2xl font-bold text-[var(--lemonade-3)] mb-6">⚔️ The Arena</h2>
+        <div className="bg-white border-4 border-[var(--lemonade-3)] rounded-2xl p-6 shadow-[4px_4px_0_0_var(--lemonade-3)]">
+          <h3 className="text-lg font-bold text-[var(--lemonade-3)] mb-2">Ready for a Challenge?</h3>
+          <p className="text-sm text-[var(--lemonade-3)] opacity-80 mb-4">
+            Click the button below to find an opponent and start a real-time coding battle.
+          </p>
+          {matchmakingStatus === 'searching' ? (
+            <button
+              className="w-full py-3 bg-red-500 border-4 border-red-600 rounded-xl font-bold text-white shadow-[4px_4px_0_0_var(--lemonade-3)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0_0_var(--lemonade-3)] transition-all duration-150"
+              onClick={handleCancelMatchmaking}
+            >
+              Stop Matchmaking
+            </button>
+          ) : (
+            <button 
+              className="w-full py-3 bg-[var(--lemonade-4)] border-4 border-[var(--lemonade-3)] rounded-xl font-bold text-white shadow-[4px_4px_0_0_var(--lemonade-3)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0_0_var(--lemonade-3)] transition-all duration-150"
+              onClick={handleMatchmaking}
+            >
+              Start Battle
+            </button>
+          )}
         </div>
       </div>
 

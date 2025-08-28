@@ -42,7 +42,7 @@ const CommunityCard: React.FC = () => {
         </div>
         <div>
           <h2 className="text-xl font-bold text-[var(--lemonade-3)]">Community Buzz</h2>
-          <p className="text-sm text-[var(--lemonade-3)] opacity-80">What's happening in your community</p>
+          <p className="text-sm text-[var(--lemonade-3)] opacity-80">What&apos;s happening in your community</p>
         </div>
       </div>
       
