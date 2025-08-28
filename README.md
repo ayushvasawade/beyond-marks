@@ -2,14 +2,14 @@
 
 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Atom%20Symbol.png" alt="Atom Symbol" width="140" height="140" />
 
-# AcadOS: The Academic Operating System
+# BEYOND-MARKS: The Academic Operating System
 ### We are not just building software. We are building the scaffolding for India's educational future.
 
 </div>
 
 <p align="center">
     <a href="#-the-burning-platform">The Vision</a> •
-    <a href="#-the-acados-ecosystem">The Platform</a> •
+    <a href="#-the-BEYOND-MARKS-ecosystem">The Platform</a> •
     <a href="#-the-blueprint-for-execution">The Plan</a> •
     <a href="#-join-our-mission">The Community</a>
 </p>
@@ -41,7 +41,7 @@ The National Education Policy (NEP) 2020 isn't just a recommendation; it's a par
 
 ### 🌱 Our Philosophy: The Principles Behind the Platform
 
-AcadOS is more than just features; it's a philosophy for institutional excellence.
+BEYOND-MARKS is more than just features; it's a philosophy for institutional excellence.
 
 -   **Seamless Integration over Silos:** We believe the true power of data is unlocked when systems talk to each other. From admissions to alumni, we create a single source of truth.
 -   **Empowerment over Control:** Our tools are designed to give autonomy back to faculty and students, fostering a culture of ownership, creativity, and innovation.
@@ -50,7 +50,7 @@ AcadOS is more than just features; it's a philosophy for institutional excellenc
 
 ---
 
-## The Platform: The AcadOS Ecosystem
+## The Platform: The BEYOND-MARKS Ecosystem
 ### 💡 From Fragmented Chaos to a Unified Ecosystem
 
 We transform your institution's digital infrastructure from a collection of disconnected islands into a seamlessly integrated, intelligent whole.
@@ -68,8 +68,8 @@ graph TD
         S -.-> N
     end
 
-    subgraph "After: The AcadOS Ecosystem"
-        CORE["AcadOS Core"]
+    subgraph "After: The BEYOND-MARKS Ecosystem"
+        CORE["BEYOND-MARKS Core"]
         CORE --> MOD1["Compliance & Automation"]
         CORE --> MOD2["Academic Innovation"]
         CORE --> MOD3["Student Success"]
@@ -158,7 +158,7 @@ We are building a robust, secure, and scalable platform designed for the future.
 | :------------ | :-------------------------------------------------------------------------- | :---------- |
 | **Q3 2025** | ✅ Alpha Version of Module 1 Complete                                       | `DONE`      |
 | **Q4 2025** | ⏳ Onboarding "Vanguard" Pilot Cohort (Seeking 3-5 innovative HEIs in Maharashtra) | `IN PROGRESS` |
-| **Q1 2026** | 🚀 Public Launch of AcadOS v1.0 (Compliance & Automation Engine)              | `UP NEXT`   |
+| **Q1 2026** | 🚀 Public Launch of BEYOND-MARKS v1.0 (Compliance & Automation Engine)              | `UP NEXT`   |
 | **Q3 2026** | 🧠 Launch Module 2 (Academic Innovation Hub)                                | `PLANNED`   |
 | **Q4 2026** | 📈 Beta Launch of Module 3 (Student Success & Placements)                     | `PLANNED`   |
 | **2027+** | 🌏 Expansion into new geographies and development of AI-driven adaptive learning pathways | `VISION`    |
@@ -168,13 +168,13 @@ We are building a robust, secure, and scalable platform designed for the future.
 ## The Community: Join Our Mission
 ### Our Story
 
-Born from countless conversations in the historic hills of Panhala, AcadOS is our answer to a simple, powerful question: **How can we empower the institutions and educators who are shaping India's future?** We are a team of technologists, educators, and dreamers committed to solving the toughest challenges in higher education.
+Born from countless conversations in the historic hills of Panhala, BEYOND-MARKS is our answer to a simple, powerful question: **How can we empower the institutions and educators who are shaping India's future?** We are a team of technologists, educators, and dreamers committed to solving the toughest challenges in higher education.
 
 ### 🤝 Get Involved
 
 **🎓 For Institutions:**
 Are you a forward-thinking institution ready to lead the change? We are now accepting applications for our heavily-supported **"Vanguard" Pilot Program**. Be among the first to shape the future.
-[**→ Register Your Interest for the Pilot Program**](mailto:vanguard@acados.com?subject=Inquiry:%20AcadOS%20Vanguard%20Pilot%20Program)
+[**→ Register Your Interest for the Pilot Program**](mailto:vanguard@BEYOND-MARKS.com?subject=Inquiry:%20BEYOND-MARKS%20Vanguard%20Pilot%20Program)
 
 **💻 For Developers & Builders:**
 This is more than a job; it's a mission. If you are a talented engineer, designer, or product manager who wants to make a lasting impact, we want to hear from you.
@@ -182,10 +182,10 @@ This is more than a job; it's a mission. If you are a talented engineer, designe
 
 **💼 For Investors & Strategic Partners:**
 We are seeking partners who share our vision of transforming Indian higher education at scale.
-[**→ Request Our Investment Memo**](mailto:investors@acados.com?subject=Investment%20Inquiry:%20AcadOS)
+[**→ Request Our Investment Memo**](mailto:investors@BEYOND-MARKS.com?subject=Investment%20Inquiry:%20BEYOND-MARKS)
 
 ---
 <div align="center">
-    <p><strong>AcadOS</strong> • Engineered in India, Built for India's Future.</p>
-    <p>© 2025 AcadOS. All Rights Reserved.</p>
+    <p><strong>BEYOND-MARKS</strong> • Engineered in India, Built for India's Future.</p>
+    <p>© 2025 BEYOND-MARKS. All Rights Reserved.</p>
 </div>
