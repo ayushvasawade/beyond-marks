@@ -8,7 +8,7 @@
 
 This software, including its source code, documentation, and any associated materials (collectively, the "Software"), is the exclusive, confidential, and proprietary property of **BEYOND-MARKS**.
 
-This is not free or open-source software. Access to this repository is granted on a limited, "need-to-know" basis for authorized personnel and approved partners only. You are not granted any license to use, copy, modify, or distribute this Software except as explicitly agreed upon in a separate written agreement with **[Your Company Name]**.
+This is not free or open-source software. Access to this repository is granted on a limited, "need-to-know" basis for authorized personnel and approved partners only. You are not granted any license to use, copy, modify, or distribute this Software except as explicitly agreed upon in a separate written agreement with **BEYOND-MARKS**.
 
 Any unauthorized use, reproduction, modification, or distribution of this Software is strictly prohibited and may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under the law.
 
@@ -29,11 +29,11 @@ You are expressly prohibited from doing any of the following without prior writt
 
 **2. Confidentiality**
 
-The Software is a trade secret of and is proprietary to **BEYOND-MARKS**. You shall maintain the Software in confidence and shall not disclose it to any third party without the prior written consent of **[Your Company Name]**.
+The Software is a trade secret of and is proprietary to **BEYOND-MARKS**. You shall maintain the Software in confidence and shall not disclose it to any third party without the prior written consent of **BEYOND-MARKS**.
 
 **3. No Warranty**
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL **[Your Company Name]** BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL **BEYOND-MARKS** BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 **4. Governing Law**
 
